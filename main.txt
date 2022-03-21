@@ -1,0 +1,16 @@
+/*
+        Variables
+Var, Let and const
+In let, You can declare an age to be 30 and call it in the console and also
+re-assign the age to be maybe 15 or any number.
+While in const, You cannot re-assign the age using the same example used for
+let.
+        Data Types
+Strings, Numbers, Boolean, null, undefined, symbol
+typeOf is used to check the data type.... E.g console.log(typeOf name) 
+        Concatination
+Example is: const hello = `My name is {name} and i am {age} years old`;
+        Arrays
+Variables that holds multiple values
+*/
+

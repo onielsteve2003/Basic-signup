@@ -1,0 +1,1 @@
+A Signup form that just takes the username and email then stores it in MongoDB

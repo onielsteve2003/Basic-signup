@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>CSC 430</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="/public/css/signup.css" />
+</head>
+<body>
+<header>
+    <h1> Sign up </h1>
+</header>
+
+<section class="container">
+    <form id="my-form">
+        <h1>Add User</h1>
+        <div class="msg"></div>
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name">
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="text" id="email">
+        </div>
+        <!-- <div>
+            <label for="password">Password:</label>
+            <input type="password" id="Password">
+        </div> -->
+        <input class="btn" type="submit" value="Submit">
+    </form>
+    <ul id="users"></ul>
+    <!-- <ul class="items">
+        <li class="item"> Item 1</li>
+        <li class="item"> Item 2</li>
+        <li class="item"> Item 3</li>
+    </ul> -->
+</section>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</body>
+
+<script>
+    const form = document.querySelector('#my-form');
+    const msg = document.querySelector('.msg');
+    const name = document.querySelector('#name');
+    const email = document.querySelector('#email');
+    const userList = document.querySelector('#users');
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const indexData = {
+        name: name.value,
+        email: email.value, 
+    }
+
+    axios.post('http://localhost:3000/signup', indexData)
+            .then(res => {
+                console.log('Success')
+            })
+            .catch(err => {
+                console.log(err)
+            })
+
+    if(name.value === '' || email.value === ''){
+        msg.innerHTML = 'please fill the fields'
+        msg.classList.add('error')
+        setTimeout(() => msg.remove(), 3000);
+    }else {
+        var li = document.createElement('li')
+        li.appendChild(document.createTextNode(`${name.value} : ${email.value}`))
+        userList.appendChild(li)
+    }
+    name.value = '';
+    email.value = '';
+});
+</script>
+
+</html>
